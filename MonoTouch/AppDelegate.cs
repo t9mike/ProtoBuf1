@@ -3,10 +3,10 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using System.IO;
-using ServiceStack.Text;
 using System.Text;
+using T9Mike.Samples.SerializationTest;
 
-namespace TestServiceStackJSON1
+namespace TestProtoBuf1
 {
 
     [Register ("AppDelegate")]
@@ -24,9 +24,7 @@ namespace TestServiceStackJSON1
 			var button = UIButton.FromType(UIButtonType.RoundedRect);
 			button.Frame = new RectangleF(0, 0, 100, 40);
 			button.SetTitle("Do It", UIControlState.Normal);
-			button.TouchDown += delegate {
-				Test_JSON();
-			};
+			button.TouchDown += Handle_ButtonTouchDown;
 			view.AddSubview(button);			
 			
 			Browser = new UIWebView();
@@ -39,44 +37,14 @@ namespace TestServiceStackJSON1
 			App_Window.MakeKeyAndVisible();
 						
 			return true;
-        }	
-		
-		private void Test_JSON()
-		{
-			string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-				"test.json");
-			
-			var obj = new TestClass();
-			obj.Prop1 = "Hello World";
-			
-			try
-			{
-	            using (var writer = File.CreateText(file))
-	            {
-					JsonSerializer.SerializeToWriter<TestClass>(obj, writer);
-	            }
-			}
-			catch (Exception ex)
-			{
-				Error(ex);
-				return;
-			}
+        }
 
-			try
-			{
-	            using (var reader = File.OpenText(file))
-	            {
-	                obj = JsonSerializer.DeserializeFromReader<TestClass>(reader);
-	            }
-				HTML(obj.Prop1);
-			}
-			catch (Exception ex)
-			{
-				Error(ex);
-			}
-			
-		}
-		
+		void Handle_ButtonTouchDown (object sender, EventArgs e)
+		{
+			string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			HTML("<pre>" + TestSerialization.Run(folder) + "</pre>");			
+		}	
+				
 		private void Error(Exception ex)
 		{
 			HTML("Error:<pre>" + Concat_Stack_Traces(ex) + "</pre>");

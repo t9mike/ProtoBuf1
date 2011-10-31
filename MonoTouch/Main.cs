@@ -2,7 +2,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace TestServiceStackJSON1
+namespace TestProtoBuf1
 {
     public class Application
     {

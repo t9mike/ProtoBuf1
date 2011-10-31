@@ -14,5 +14,11 @@ namespace T9Mike.Samples.ClassLibrary
 
         [ProtoMember(3)]
         public string Field2 = "";
-	}
+
+		public static SubClass Sample()
+		{
+			return new SubClass { Date_Saved = DateTime.Now, Field1 = "Hello", Field2 = "World" };
+		}
+}
+	
 }
