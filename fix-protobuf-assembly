@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+
+# Usage: fix-protobuf-assembly assembly bad-namespace
+
+use strict;
+use File::Slurp;
+use Cwd;
+
+print "Current directory is " . getcwd() . "\n";
+my $asm_file = shift || die "missing assembly file";
+my $bad_ns = shift || die "missing namespace";
+
+die "no such file '$asm_file'" if (! -f $asm_file);
+
+my $il_file = $asm_file;
+$il_file =~ s#dll$#il#;
+
+Run("ildasm /out=$il_file $asm_file");
+my $il = read_file($il_file) || die "error reading $il_file: $!";
+
+my $ns = $bad_ns;
+$ns =~ s#\.[^.]+$##;
+if (($il =~ s#(\.assembly|module) $bad_ns#$1 $ns#g) == 0)
+{
+   die "$bad_ns not found in input dll; aborting";
+}
+write_file($il_file, $il);
+
+Run("ilasm /dll $il_file");
+
+sub Run
+{
+   my($command) = @_;
+
+   warn "Running $command ...\n";
+   system($command) && die "error running last command; bailing out";
+}
+
