@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.Workbench ActiveDocument="AppDelegate.cs">
     <Files>
       <File FileName="../Any/SerializationTest/TestSerialization.cs" Line="28" Column="1" />
       <File FileName="AppDelegate.cs" Line="7" Column="7" />
-      <File FileName="Main.cs" Line="5" Column="24" />
-      <File FileName="../Any/ClassLibrary/SubClass.cs" Line="4" Column="38" />
+      <File FileName="Main.cs" Line="1" Column="1" />
+      <File FileName="../Any/ClassLibrary/SubClass.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
