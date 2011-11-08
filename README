@@ -4,6 +4,3 @@ Assemblies folder.
 
 The serialization assembly is created using solution in Windows. It gets saved
 to Assemblies/Any folder and is under source code control.
-
-This sample currently only works on the simulator. It does not work on the iOS
-device. See http://stackoverflow.com/questions/7940838/jit-compile-error-with-protobuf-net-on-monotouch-ios-device-iphone-ipad.
