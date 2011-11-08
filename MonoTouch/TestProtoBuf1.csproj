@@ -23,6 +23,7 @@
     <MtouchI18n />
     <MtouchSdkVersion>5.0</MtouchSdkVersion>
     <AssemblyName>TabPlusNav1</AssemblyName>
+    <MtouchExtraArgs>--linkskip=protobuf-net</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
